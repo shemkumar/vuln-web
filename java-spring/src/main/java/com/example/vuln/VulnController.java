@@ -47,9 +47,10 @@ public class VulnController {
 
     @PostMapping("/java/object")
     public String deserialize(@RequestBody byte[] body) throws Exception {
-        // A08 unsafe Java deserialization.
-        ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(body));
-        Object obj = ois.readObject();
-        return obj.toString();
+        // A08 unsafe Java deserialization. Removed due to critical security vulnerability.
+        // ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(body));
+        // Object obj = ois.readObject();
+        // return obj.toString();
+        return "Deserialization of untrusted data is disabled for security reasons.";
     }
 }
