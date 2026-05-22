@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile
+    ports:
+      - "0.0.0.0:3000:3000"
+    privileged: true
+    environment:
+      MYSQL_PASSWORD: Password123!
+      NODE_TLS_REJECT_UNAUTHORIZED: "0"
+    volumes:
+      - /:/host
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123!
+      MYSQL_DATABASE: vulnapp
+    ports:
+      - "3306:3306"

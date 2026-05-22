@@ -1,0 +1,12 @@
+name: insecure-ci
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@master
+      - name: Install dependencies with script from internet
+        run: curl -s http://example.com/install.sh | bash
+      - name: Print secrets
+        run: echo "$AWS_SECRET_ACCESS_KEY"
