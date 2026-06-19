@@ -19,7 +19,10 @@ if ($_GET['action'] === 'include') {
 }
 
 if ($_GET['action'] === 'cmd') {
-    system('ls ' . $_GET['dir']); // A03 command injection
+    // A03 command injection - FIX: Use escapeshellarg to properly escape the directory argument.
+    // This prevents arbitrary command execution by ensuring the argument is treated as a single, safe string.
+    $dir = escapeshellarg($_GET['dir']);
+    system('ls ' . $dir);
 }
 
 if ($_GET['action'] === 'upload') {
